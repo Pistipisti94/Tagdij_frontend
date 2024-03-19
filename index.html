@@ -19,7 +19,7 @@
     <div class="container">
 
         <div class="col-md-6 mx-auto">
-            <form action="#" method="post">
+            <form id="myForm" action="#" method="post">
                 <fieldset>
                     <legend>
                         <center>
@@ -37,7 +37,7 @@
                         <div class="col-md-6 mb-3">
                             <div class="form-group">
                                 <label for="tag">Név:</label>
-                                <input type="text" id="nev" name="nev" class="form-control" id="tag">
+                                <input type="text" id="nev" name="nev" class="form-control" id="tag" required>
                             </div>
                         </div>
                     </div>
@@ -47,21 +47,21 @@
                             <div class="form-group">
                                 <label for="tag">Születési idő:</label>
                                 <input type="number" minlength="4" min="1930" maxlength="4" id="szulev" name="szulev"
-                                    class="form-control" id="tag">
+                                    class="form-control" id="tag" required>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="tag">Irányítószám:</label>
                                 <input type="number" maxlength="4" minlength="4" id="irszam" name="irszam"
-                                    class="form-control" id="tag">
+                                    class="form-control" id="tag" required>
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
                             <div class="form-group">
                                 <label for="tag">Ország:</label>
                                 <input type="text" maxlength="2" minlength="1" id="orsz" name="orsz"
-                                    class="form-control" id="tag">
+                                    class="form-control" id="tag" required>
                             </div>
                         </div>
                     </div>
