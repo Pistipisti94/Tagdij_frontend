@@ -4,48 +4,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const updateButton = document.getElementById("update");
     const deleteButton = document.getElementById("delete");
     var table = document.getElementById("ugyfellista");
-    function  select() {
-        
-        console.log("select");
-        
-    }
-    createButton.addEventListener("click", function () {
-        const formData = new FormData(document.getElementById("myForm"));
+    const formData = new FormData(document.getElementById("myForm"));
+    
+    createButton.addEventListener("click", async function () {
         let baseUrl = "http://localhost/Tagdij_backend/index.php?ugyfel";
-        let dataJSON = {
-            "azon": document.getElementById("azon").value,
-            "nev": document.getElementById("nev").value,
-            "szulev": document.getElementById("szulev").value,
-            "irsz": document.getElementById("irszam").value,
-            "orsz": document.getElementById("orsz").value
-        };
         let options = {
             method: "POST",
-            headers: {
-
-            },
             body: formData
-
         };
-        response = fetch(baseUrl, options);
+        response = await fetch(baseUrl, options);
     })
     readButton.addEventListener("click", async function () {
-        let baseUrl = "http://localhost/Tagdij_backend/index.php?ugyfel";
-        let dataJSON = {
-            "azon": document.getElementById("azon").value,
-            "nev": document.getElementById("nev").value,
-            "szulev": document.getElementById("szulev").value,
-            "irsz": document.getElementById("irszam").value,
-            "orsz": document.getElementById("orsz").value
-        };
+        let baseUrl = "http://localhost/Tagdij_backend/index.php?ugyfel";        
         let options = {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
             }
-
-        };
-        console.log(options);
+        };        
         let response = await fetch(baseUrl, options);
         let data = await response.json();
         let tabla = "";
@@ -65,19 +41,45 @@ document.addEventListener("DOMContentLoaded", function () {
                             `;
         let row = 1;
         data.forEach(element => {
-
-            tabla += `<tr><th scope='row'>` + element.azon + `</th><td>` + element.nev + `</td><td>` + element.szulev + `</td><td>` + element.irszam + `</td><td>` + element.orsz + `</td><td><Button class="btn btn-primary" id="` + element.orsz + `" onclick="select()">Pick</Button></td></tr>`;
+            tabla += `<tr><th scope='row'>` + element.azon + `</th><td id="nev`+element.azon+`">` + element.nev + `</td><td id="szulev`+element.azon+`">` + element.szulev + `</td><td id="irszam`+element.azon+`">` + element.irszam + `</td><td id="orsz`+element.azon+`">` + element.orsz + `</td><td><Button class="btn btn-primary pick" id="` + element.azon + `">Pick</Button></td></tr>`;
             row++;
         });
         tabla += `</tbody>
                             </table>`;
         table.innerHTML = tabla;
+        const pickButton = document.getElementsByClassName("pick");
+        for (let i = 0; i < pickButton.length; i++) {
+            pickButton[i].addEventListener("click", function () {
+                var azon = document.getElementById("azon");
+                var nev = document.getElementById("nev");
+                var szulev = document.getElementById("szulev");
+                var irszam = document.getElementById("irszam");
+                var orsz = document.getElementById("orsz");
+                azon.value = this.id;              
+                nev.value = document.getElementById("nev"+this.id).innerHTML;
+                szulev.value = document.getElementById("szulev"+this.id).innerHTML;
+                irszam.value = document.getElementById("irszam"+this.id).innerHTML;
+                orsz.value = document.getElementById("orsz"+this.id).innerHTML;                
+            })
+        }
     })
     updateButton.addEventListener("click", function () {
 
     });
-    deleteButton.addEventListener("click", function () {
-        table.innerHTML = "";
+    deleteButton.addEventListener("click", async function () {
+        let baseUrl = "http://localhost/Tagdij_backend/index.php?ugyfel";
+        let dataJSON = {
+            "azon": document.getElementById("azon").value,
+        };               
+        let options = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dataJSON)
+        }
+            response = await fetch(baseUrl, options);
+            console.log(response);
     });
-
 });
+
