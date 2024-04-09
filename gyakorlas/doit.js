@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const createButton = document.getElementById("create");
     var table = document.getElementById("azons");
-    const formData = new FormData(document.getElementById("myForm"));
+    
 
     createButton.addEventListener("click", async function () {
+        const formData = new FormData(document.getElementById("myForm"));
         const osszeg = document.getElementById("osszeg").value;
         let azons = document.getElementById("azons");
         var valueazon = azons.value;  
