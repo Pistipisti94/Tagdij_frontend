@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             `;
         let row = 1;
         data.forEach(element => {
-            tabla += `<tr><th scope='row'>` + element.azon + `</th><td id="nev`+element.azon+`">` + element.nev + `</td><td id="szulev`+element.azon+`">` + element.szulev + `</td><td id="irszam`+element.azon+`">` + element.irszam + `</td><td id="orsz`+element.azon+`">` + element.orsz + `</td><td><Button class="btn btn-primary pick" id="` + element.azon + `">Pick</Button></td></tr>`;
+            tabla += `<tr><th scope='row'>` + element.azon + `</th>  <td id="nev`+element.azon+`">` + element.nev + `</td><td id="szulev`+element.azon+`">` + element.szulev + `</td><td id="irszam`+element.azon+`">` + element.irszam + `</td><td id="orsz`+element.azon+`">` + element.orsz + `</td><td><Button class="btn btn-primary pick" id="` + element.azon + `">Pick</Button></td></tr>`;
             row++;
         });
         tabla += `</tbody>
